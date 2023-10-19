@@ -1,5 +1,7 @@
 package net.ednovak.reupload.remindme;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -131,7 +133,7 @@ public class AlarmHelper extends BroadcastReceiver {
 
         //Log.d(TAG, "name for alarm: " + name);
         intent.putExtra("itemName", name);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(ctx, Main.simpleHash(name), intent, 0);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(ctx, Main.simpleHash(name), intent, FLAG_IMMUTABLE);
 
         // Check if preference is still there (or if this event was deleted
         boolean itemExists = Main.checkItemExists(ctx, name);
