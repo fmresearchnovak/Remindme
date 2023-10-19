@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.ednovak.remindme.Main">
+
+
+    <ImageView android:id="@+id/main_iv_sun_done"
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/sun_done"
+        android:visibility="gone"
+        app:layout_constraintVertical_bias="0.30"/>
+
+
+    <ListView android:id="@+id/main_listview_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <ImageButton
+        android:id="@+id/main_butt_new"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle"
+        android:elevation="4dp"
+        android:onClick="newItem"
+        android:layout_margin="50dp"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
