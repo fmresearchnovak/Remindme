@@ -6,8 +6,8 @@ android {
         applicationId "net.ednovak.reupload.remindme"
         minSdkVersion 18
         targetSdkVersion 34
-        versionCode 3
-        versionName "1.2"
+        versionCode 4
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
