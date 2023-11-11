@@ -40,8 +40,10 @@ public class AlarmHelper extends BroadcastReceiver {
     //public final static long SECONDS_5 = 1000 * 5;
 
     public static long msToMinutes(long ms){
-        Log.d(TAG, "ms to minutes: ");
-        return ms / 1000 / 60;
+
+        long mins = ms / 1000 / 60;
+        Log.d(TAG, "ms " + ms + "  to minutes: " + mins);
+        return mins;
     }
 
     // dueTime is the epoch (upper limit) which we cannot pass)

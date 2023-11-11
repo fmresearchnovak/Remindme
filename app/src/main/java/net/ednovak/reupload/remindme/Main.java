@@ -1,5 +1,6 @@
 package net.ednovak.reupload.remindme;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
 import android.app.TimePickerDialog;
@@ -7,6 +8,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -112,7 +116,7 @@ public class Main extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-
+        checkNotificationPermission();
         ctx = getApplicationContext();
         updateListViewItems();
     }
@@ -367,5 +371,15 @@ public class Main extends AppCompatActivity {
         SharedPreferences sp = (SharedPreferences)context.getSharedPreferences(PREFS_DEADLINES, context.MODE_PRIVATE);
         long endEpoch = sp.getLong(name, -1);
         return endEpoch > 0;
+    }
+
+    private void checkNotificationPermission(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            String[] perms = new String[]{Manifest.permission.POST_NOTIFICATIONS};
+            if (ContextCompat.checkSelfPermission(this, perms[0]) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(perms, 0);
+            }
+        }
     }
 }

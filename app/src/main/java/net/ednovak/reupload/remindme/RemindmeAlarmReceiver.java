@@ -17,21 +17,23 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 
 public class RemindmeAlarmReceiver extends BroadcastReceiver {
     private final static String TAG = RemindmeAlarmReceiver.class.getName();
     public final static String NOTIFICATION_CHANNEL = "net.ednovak.reupload.remindme.channel0";
+    public final static int PENDING_INTENT_FLAGS =   PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
 
     public RemindmeAlarmReceiver() {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
-        //Log.d(TAG, "Got intent in AlarmReceiver");
+    public void onReceive(Context context, Intent origIntent) {
+        Log.d(TAG, "Got intent in AlarmReceiver");
 
-        String name = intent.getStringExtra("itemName");
-        //Log.d(TAG, "name in b-receiver: " + name + "  creating notification");
+        String name = origIntent.getStringExtra("itemName");
+        Log.d(TAG, "name in b-receiver: " + name + "  creating notification");
 
 
 
@@ -47,25 +49,28 @@ public class RemindmeAlarmReceiver extends BroadcastReceiver {
         mBuilder.setChannelId(NOTIFICATION_CHANNEL);
 
 
-
-        PendingIntent piANNOY = genActionIntent(context, name);
+        // This is the action called when the notification is swiped away
+        // or user clicks "Remind Me Later" button on notification itself
+        // user is annoyed
+        Intent iANNOY = new Intent(context, AlarmHelper.class);
+        iANNOY.putExtra("itemName", name);
+        PendingIntent piANNOY = PendingIntent.getBroadcast(context, Main.simpleHash(name), iANNOY, PENDING_INTENT_FLAGS);
         NotificationCompat.Action actionANNOY = new NotificationCompat.Action.Builder(R.drawable.cross, "Remind Me Later", piANNOY).build();
-        mBuilder.addAction(actionANNOY);
-
+        mBuilder.addAction(actionANNOY); //
         mBuilder.setDeleteIntent(piANNOY); // Swipe the notification away is the same as "delete"
 
 
-        Intent i = new Intent(context, Main.class);
-        i.putExtra("itemName", name);
-        PendingIntent openMain = PendingIntent.getActivity(context, Main.simpleHash(name), i, 0);
+        // This is the action when the notification is opened
+        Intent iOPEN = new Intent(context, Main.class);
+        iOPEN.putExtra("itemName", name);
+        PendingIntent openMain = PendingIntent.getActivity(context, Main.simpleHash(name), iOPEN, PENDING_INTENT_FLAGS);
         mBuilder.setContentIntent(openMain);
 
+
+        // finish building it
         Notification n = mBuilder.build();
-        n.flags |= Notification.FLAG_AUTO_CANCEL; // Cancels if they click the notification
-
-
+        n.flags |= Notification.FLAG_AUTO_CANCEL; // clears notification if they click / open it notification
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
 
         // Check real quick that this thing still exists so we don't bother the user in case they
         // deleted it from the app!
@@ -75,27 +80,6 @@ public class RemindmeAlarmReceiver extends BroadcastReceiver {
             mNotificationManager.notify(Main.simpleHash(name), n);
         }
 
-    }
-
-
-    // Used to direct the user to main activity (and tell main activity which item this is)
-    // when they click the BUTTON on the notification
-    private static PendingIntent genActionIntent(Context context, String name){
-        Intent intent = new Intent(context, AlarmHelper.class);
-        Bundle extras = new Bundle();
-        extras.putString("itemName", name);
-        //extras.putBoolean("annoyed", annoyed);
-        intent.putExtras(extras);
-        int code = (true) ? 1 : 0;
-        // getBroadcast will return the same pending intent if everything is the same as last time
-        // extras are NOT CONSIDERED in the comparison
-        // So, if you try to create two pendingintents, but all of the inputs below match'
-        // You will not create a new pendingintent at all
-        // http://stackoverflow.com/questions/20204284/is-it-possible-to-create-multiple-pendingintents-with-the-same-requestcode-and-d
-        // The code int takes care of that problem for me.
-        // I'm not sure how code solves this problem (it used to somtimes be false, now it's always true.  It still solves the problem though.
-        PendingIntent pIntent = PendingIntent.getBroadcast(context, Main.simpleHash(name) + code, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        return pIntent;
     }
 
 
