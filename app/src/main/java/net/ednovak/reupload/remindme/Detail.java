@@ -67,10 +67,14 @@ public class Detail extends Activity {
         sp = getSharedPreferences(Main.PREFS_NEXT_NOTIFICATION_TIMES, MODE_PRIVATE);
         TextView nextNoteTV = (TextView)findViewById(R.id.detail_tv_next_notification);
         long nextNotificationEpoch = sp.getLong(name, 0);
-        if(nextNotificationEpoch != 0) {
+        if (nextNotificationEpoch != 0) {
             long delay = nextNotificationEpoch - System.currentTimeMillis();
-            String s = "(next notification in " + AlarmHelper.msToMinutes(delay) + " minutes ...)";
-            nextNoteTV.setText(s);
+            if (delay <= 0) {
+                nextNoteTV.setText("(next notification very soon...)");
+            } else {
+                String s = "(next notification in " + AlarmHelper.msToMinutes(delay) + " minutes ...)";
+                nextNoteTV.setText(s);
+            }
         }
     }
 
