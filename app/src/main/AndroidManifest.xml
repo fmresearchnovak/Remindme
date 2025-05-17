@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.ednovak.reupload.remindme">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- For boot bcast receiver in Android 9+ -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -14,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="net.ednovak.reupload.remindme.Main"
+            android:name="net.ednovak.remindme.Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +23,15 @@
         </activity>
 
         <receiver
-            android:name="net.ednovak.reupload.remindme.AlarmHelper"
+            android:name="net.ednovak.remindme.AlarmHelper"
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name="net.ednovak.reupload.remindme.RemindmeAlarmReceiver"
+            android:name="net.ednovak.remindme.RemindmeAlarmReceiver"
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name="net.ednovak.reupload.remindme.RemindmeBootReceiver"
+            android:name="net.ednovak.remindme.RemindmeBootReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
@@ -44,7 +43,7 @@
         </receiver>
 
         <activity
-            android:name="net.ednovak.reupload.remindme.Detail"
+            android:name="net.ednovak.remindme.Detail"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" />
     </application>
 

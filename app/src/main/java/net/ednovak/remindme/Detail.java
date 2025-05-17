@@ -1,4 +1,4 @@
-package net.ednovak.reupload.remindme;
+package net.ednovak.remindme;
 
 import android.app.Activity;
 import android.content.DialogInterface;

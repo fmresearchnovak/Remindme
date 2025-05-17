@@ -1,4 +1,4 @@
-package net.ednovak.reupload.remindme;
+package net.ednovak.remindme;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -38,8 +38,8 @@ import java.util.Map;
 public class Main extends AppCompatActivity {
     private final static String TAG = Main.class.getName();
 
-    public final static String PREFS_DEADLINES = "net.ednovak.reupload.remindme.preferences.names";
-    public final static String PREFS_NEXT_NOTIFICATION_TIMES = "net.ednovak.reupload.remindme.preferences.times";
+    public final static String PREFS_DEADLINES = "net.ednovak.remindme.preferences.names";
+    public final static String PREFS_NEXT_NOTIFICATION_TIMES = "net.ednovak.remindme.preferences.times";
 
     private String tmpName;
     private int tmpYear;

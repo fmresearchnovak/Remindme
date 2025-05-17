@@ -1,4 +1,4 @@
-package net.ednovak.reupload.remindme;
+package net.ednovak.remindme;
 
 import static android.app.PendingIntent.FLAG_IMMUTABLE;
 

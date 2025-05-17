@@ -1,4 +1,4 @@
-package net.ednovak.reupload.remindme;
+package net.ednovak.remindme;
 
 
 import android.app.Notification;
@@ -14,7 +14,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import android.os.Build;
-import android.os.Bundle;
 
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -22,7 +21,7 @@ import android.util.Log;
 
 public class RemindmeAlarmReceiver extends BroadcastReceiver {
     private final static String TAG = RemindmeAlarmReceiver.class.getName();
-    public final static String NOTIFICATION_CHANNEL = "net.ednovak.reupload.remindme.channel0";
+    public final static String NOTIFICATION_CHANNEL = "net.ednovak.remindme.channel0";
     public final static int PENDING_INTENT_FLAGS =   PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
 
     public RemindmeAlarmReceiver() {
