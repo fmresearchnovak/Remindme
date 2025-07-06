@@ -1,22 +1,24 @@
 package net.ednovak.remindme;
 
-import android.app.Activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-// Does not extend AppCompat because it will be a dailog (without any ActionBar)
-public class Detail extends Activity {
+
+public class Detail extends AppCompatActivity {
     private final static String TAG = Detail.class.getName().toString();
 
     private String name;

@@ -2,21 +2,18 @@ package net.ednovak.remindme;
 
 
 import android.app.Notification;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.os.Build;
-
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 
 public class RemindmeAlarmReceiver extends BroadcastReceiver {
