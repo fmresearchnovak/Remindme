@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -25,12 +26,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
@@ -92,25 +95,6 @@ public class Main extends AppCompatActivity {
             }
         });
 
-
-        /*
-        AlertDialog alertDialog = new AlertDialog.Builder(Main.this).create();
-        alertDialog.setTitle("Information Leak!");
-        alertDialog.setMessage("'WeatherPlus' is leaking your phone number: 555-3141");
-
-        DialogInterface.OnClickListener dismisser = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        };
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok", dismisser);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Stop It (Now)", dismisser);
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Stop It (Forever)", dismisser);
-
-        alertDialog.show();
-        */
-
     }
 
     @Override
@@ -125,7 +109,7 @@ public class Main extends AppCompatActivity {
     public void newItem(View v){
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reminder Name?");
 
         // Set up the input box
@@ -134,7 +118,7 @@ public class Main extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT);
 
         // Specify the max length so that the name of the reminder is not too long
-        // For really long names the detail few overflows the layout and the details
+        // For really long names the detail view overflows the layout and the details
         // cannot be seen.
         //int maxLength = 100;
         //input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
@@ -184,7 +168,7 @@ public class Main extends AppCompatActivity {
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.setTitle("When will it be too late?");
-        timePickerDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //timePickerDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         timePickerDialog.show();
     }
 
@@ -217,7 +201,7 @@ public class Main extends AppCompatActivity {
 
                     }
                 }, mYear, mMonth, mDay);
-        datePickerDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //datePickerDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         datePickerDialog.show();
     }
 
@@ -348,6 +332,7 @@ public class Main extends AppCompatActivity {
         Map<String, ?> itemsMap= sp.getAll();
         Object[] items = itemsMap.keySet().toArray();
 
+        Log.d(TAG, "Items: " + Arrays.toString(items));
 
         if(items.length == 0){
             sun.setVisibility(View.VISIBLE);
@@ -363,6 +348,7 @@ public class Main extends AppCompatActivity {
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(mMessageClickedHandler);
         lv.setOnItemLongClickListener(mMessageLongClickedHandler);
+        adapter.notifyDataSetChanged();
 
     }
 
