@@ -7,6 +7,7 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:paddingBottom="10dp"
     tools:context="net.ednovak.remindme.Detail">
 
     <LinearLayout
@@ -22,9 +23,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp"
             android:layout_marginBottom="20dp"
             android:text="TITLE"
+            android:background="#cfcfcf"
             android:textColor="#4f4f4f"
             android:textSize="28dp" />
 
@@ -70,11 +73,9 @@
 
 
     <Button
-        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
         android:onClick="close"
         android:text="close"
         app:layout_constraintEnd_toEndOf="parent"

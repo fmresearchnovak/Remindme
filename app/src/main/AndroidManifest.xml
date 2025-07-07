@@ -44,7 +44,13 @@
 
         <activity
             android:name="net.ednovak.remindme.Detail"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar.MinWidth" />
+            android:exported="false"
+            android:theme="@style/Theme.Remindme.Dialog" />
+
+
+            <!-- android:theme="@style/Theme.AppCompat.DayNight.Dialog" /> -->
+            <!-- android:theme="@android:style/Theme.Material.Dialog.NoActionBar.MinWidth" -->
+
     </application>
 
 </manifest>
