@@ -27,8 +27,7 @@
             android:paddingBottom="5dp"
             android:layout_marginBottom="20dp"
             android:text="TITLE"
-            android:background="#cfcfcf"
-            android:textColor="#4f4f4f"
+            android:background="@color/material_dynamic_neutral50"
             android:textSize="28dp" />
 
 
@@ -37,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deadline"
-            android:textColor="@android:color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -46,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/detail_tv_title"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
             android:textSize="16dp"
             android:text="due"/>
 

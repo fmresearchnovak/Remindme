@@ -41,7 +41,7 @@
         android:elevation="4dp"
         android:onClick="newItem"
         android:layout_margin="50dp"
-        android:src="@drawable/ic_baseline_add_24"
+        android:src="@drawable/addition_plus_sign_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

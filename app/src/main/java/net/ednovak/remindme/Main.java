@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -62,6 +64,15 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar ab = getSupportActionBar();
+        if(ab != null){
+            ab.setDisplayShowHomeEnabled(true);
+            ab.setDisplayUseLogoEnabled(true);
+            ab.setLogo(R.mipmap.note);
+            ab.setDisplayShowTitleEnabled(true);
+            ab.setTitle(" RemindMe");
+        }
 
         sun = (ImageView)findViewById(R.id.main_iv_sun_done);
 
