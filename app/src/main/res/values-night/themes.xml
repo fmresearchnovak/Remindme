@@ -1,4 +1,10 @@
 <resources>
     <style name="Theme.Remindme" parent="Theme.Material3.DayNight">
     </style>
+
+    <style name="Theme.Remindme.Dialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
 </resources>
