@@ -13,6 +13,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -103,6 +106,45 @@ public class Main extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_menu, menu); // R.menu.main_menu is your menu XML file
+        return true; // Return true to display the menu
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemID = item.getItemId();
+        if(itemID == R.id.add_new_item) {
+            newItem(null);
+            return true;
+        } else if (itemID == R.id.remove_all){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Delete All Reminders?");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    SharedPreferences sp = getSharedPreferences(PREFS_DEADLINES, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.clear();
+                    editor.commit();
+                    updateListViewItems();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
