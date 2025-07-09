@@ -122,6 +122,11 @@ public class Main extends AppCompatActivity {
             newItem(null);
             return true;
         } else if (itemID == R.id.remove_all){
+            if(getSharedPreferences(PREFS_DEADLINES, MODE_PRIVATE).getAll().size() == 0) {
+                Toast.makeText(this, "No items to remove", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Delete All Reminders?");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
