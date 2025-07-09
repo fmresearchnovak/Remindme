@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -119,17 +120,12 @@ public class Main extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reminder Name?");
 
-        // Set up the input box
-        final EditText input = new EditText(this);
-        // Specify the type of input expected;
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        // Set up the edittext in the dialog
+        // I have to put the edittext in a Framelayout (in the xml file) to get margins in a dialog
+        View dialog = getLayoutInflater().inflate(R.layout.dialog_new_item, null);
+        final EditText input = (EditText)dialog.findViewById(R.id.dialog_new_item_et);
 
-        // Specify the max length so that the name of the reminder is not too long
-        // For really long names the detail view overflows the layout and the details
-        // cannot be seen.
-        //int maxLength = 100;
-        //input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
-        builder.setView(input);
+        builder.setView(dialog);
 
         // Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
